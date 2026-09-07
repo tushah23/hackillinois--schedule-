@@ -484,3 +484,98 @@ body {
   height: 60px;
   background: radial-gradient(circle at 30% 30%, #ffb199, #c9607a);
 }
+
+.view-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.view-tab {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaf6f8;
+  font-family: "Baloo 2", sans-serif;
+  cursor: pointer;
+}
+
+.view-tab--active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.dive-path {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 30px;
+  border-left: 3px dashed rgba(255, 255, 255, 0.3);
+}
+
+.dive-path__empty {
+  text-align: center;
+  color: #eaf6f8;
+  opacity: 0.8;
+  font-size: 16px;
+}
+
+.dive-path__item {
+  margin-bottom: 20px;
+}
+
+.dive-path__node {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #eaf6f8;
+  position: relative;
+}
+
+.dive-path__node::before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #6bcf9f;
+}
+
+.dive-path__node--conflict::before {
+  background: #ff6b6b;
+}
+
+.dive-path__node--conflict {
+  border: 1px solid rgba(255, 107, 107, 0.6);
+}
+
+.dive-path__time {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.dive-path__name {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.dive-path__warning {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #ff9d9d;
+}
+
+.dive-path__gap {
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.6;
+  margin: 10px 0;
+}
