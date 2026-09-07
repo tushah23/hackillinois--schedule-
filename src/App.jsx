@@ -1,5 +1,6 @@
 import { useEvents } from "./hooks/useEvents";
 import EventCard from "./components/EventCard";
+import "./App.css";
 
 function App() {
   const { events, loading, error } = useEvents();
