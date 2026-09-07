@@ -1,4 +1,4 @@
-function EventCard({ event }) {
+function EventCard({ event, isFavorited, onToggleFavorite }) {
   const { name, description, startTime, endTime, eventType, locations, sponsor } = event;
 
   const start = new Date(startTime * 1000);
@@ -12,7 +12,16 @@ function EventCard({ event }) {
     <div className={`event-card event-card--${eventType.toLowerCase()}`}>
       <div className="event-card__header">
         <span className="event-card__type">{eventType}</span>
-        {sponsor && <span className="event-card__sponsor">{sponsor}</span>}
+        <div className="event-card__header-right">
+          {sponsor && <span className="event-card__sponsor">{sponsor}</span>}
+          <button
+            className={`favorite-button ${isFavorited ? "favorite-button--active" : ""}`}
+            onClick={onToggleFavorite}
+            aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
+          >
+            {isFavorited ? "⭐" : "☆"}
+          </button>
+        </div>
       </div>
       <h3 className="event-card__name">{name}</h3>
       <p className="event-card__time">{timeRange}</p>

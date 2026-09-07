@@ -2,8 +2,11 @@ import { useState } from "react";
 import { useEvents } from "./hooks/useEvents";
 import { groupEventsByDay } from "./utils/groupEventsByDay";
 import { getEventTypes } from "./utils/getEventTypes";
+import { useFavorites } from "./hooks/useFavorites";
 import EventCard from "./components/EventCard";
 import "./App.css";
+
+
 
 const TYPE_EMOJIS = {
   WORKSHOP: "🌅",
@@ -16,11 +19,13 @@ const TYPE_EMOJIS = {
 function App() {
   const { events, loading, error } = useEvents();
   const [activeDayIndex, setActiveDayIndex] = useState(0);
-  const [activeType, setActiveType] = useState(null); // null = show all
+  const [activeType, setActiveType] = useState(null);
+  const { toggleFavorite, isFavorite } = useFavorites();  // ← moved up here, before any returns
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  // ...rest of component
   const days = groupEventsByDay(events);
   const activeDay = days[activeDayIndex];
   const allTypes = getEventTypes(events);
@@ -32,7 +37,7 @@ function App() {
   function toggleType(type) {
     setActiveType(activeType === type ? null : type);
   }
-
+  
   return (
   <div className="page">
     <div className="ocean-background">
@@ -97,7 +102,12 @@ function App() {
 
       <div className="event-list">
         {visibleEvents.map((event) => (
-          <EventCard key={event.eventId} event={event} />
+        <EventCard
+          key={event.eventId}
+          event={event}
+          isFavorited={isFavorite(event.eventId)}
+          onToggleFavorite={() => toggleFavorite(event.eventId)}
+        />
         ))}
       </div>
     </div>
