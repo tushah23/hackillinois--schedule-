@@ -1,18 +1,37 @@
 import { useState } from "react";
 import { useEvents } from "./hooks/useEvents";
 import { groupEventsByDay } from "./utils/groupEventsByDay";
+import { getEventTypes } from "./utils/getEventTypes";
 import EventCard from "./components/EventCard";
 import "./App.css";
+
+const TYPE_EMOJIS = {
+  WORKSHOP: "🌅",
+  MEAL: "🐚",
+  SPEAKER: "🦭",
+  MINIEVENT: "🌊",
+  OTHER: "🛥️",
+};
 
 function App() {
   const { events, loading, error } = useEvents();
   const [activeDayIndex, setActiveDayIndex] = useState(0);
+  const [activeType, setActiveType] = useState(null); // null = show all
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const days = groupEventsByDay(events);
   const activeDay = days[activeDayIndex];
+  const allTypes = getEventTypes(events);
+
+  const visibleEvents = activeDay.events.filter(
+    (event) => activeType === null || event.eventType === activeType
+  );
+
+  function toggleType(type) {
+    setActiveType(activeType === type ? null : type);
+  }
 
   return (
     <div>
@@ -29,8 +48,22 @@ function App() {
         ))}
       </div>
 
+      <div className="filter-bar">
+        {allTypes.map((type) => (
+          <button
+            key={type}
+            className={`filter-chip filter-chip--${type.toLowerCase()} ${
+              activeType === type ? "filter-chip--active" : ""
+            }`}
+            onClick={() => toggleType(type)}
+          >
+            {TYPE_EMOJIS[type] ?? "🔹"} {type}
+          </button>
+        ))}
+      </div>
+
       <div className="event-list">
-        {activeDay.events.map((event) => (
+        {visibleEvents.map((event) => (
           <EventCard key={event.eventId} event={event} />
         ))}
       </div>

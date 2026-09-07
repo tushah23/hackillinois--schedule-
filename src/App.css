@@ -231,3 +231,32 @@ body {
   border-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eaf6f8;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.filter-chip:hover {
+  transform: translateY(-2px);
+}
+
+.filter-chip--active {
+  opacity: 1;
+}
