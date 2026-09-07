@@ -1,8 +1,9 @@
 /* ---------- Page setup ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;500;700&display=swap');
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Baloo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 #root {
@@ -61,7 +62,9 @@ body {
 
 .event-card__name {
   margin: 4px 0;
-  font-size: 20px;
+  font-size: 26px;
+  font-family: "Lobseter", cursive;
+  font-weight: 400;
 }
 
 .event-card__time,
@@ -82,36 +85,56 @@ body {
 /* Each type gets its own accent color on the type badge and left border */
 
 .event-card--workshop {
-  border-left: 4px solid #4fd1c5; /* teal */
+  border-left: 4px solid #2dd4bf; /* sea glass / shallow water teal */
 }
 .event-card--workshop .event-card__type {
-  background: rgba(79, 209, 197, 0.25);
+  background: rgba(45, 212, 191, 0.25);
 }
 
 .event-card--meal {
-  border-left: 4px solid #f6ad55; /* coral/orange */
+  border-left: 4px solid #7c6fd6; /* twilight purple-blue */
 }
 .event-card--meal .event-card__type {
-  background: rgba(246, 173, 85, 0.25);
+  background: rgba(124, 111, 214, 0.25);
 }
 
 .event-card--speaker {
-  border-left: 4px solid #7f9cf5; /* deep blue */
+  border-left: 4px solid #3b6ba0; /* deep ocean blue */
 }
 .event-card--speaker .event-card__type {
-  background: rgba(127, 156, 245, 0.25);
+  background: rgba(59, 107, 160, 0.25);
 }
 
 .event-card--minievent {
-  border-left: 4px solid #f687b3; /* pink */
+  border-left: 4px solid #6bcf9f; /* kelp / seaweed green */
 }
 .event-card--minievent .event-card__type {
-  background: rgba(246, 135, 179, 0.25);
+  background: rgba(107, 207, 159, 0.25);
 }
 
 .event-card--other {
-  border-left: 4px solid #a0aec0; /* neutral gray-blue */
+  border-left: 4px solid #c9b8a8; /* sand / pearl */
 }
 .event-card--other .event-card__type {
-  background: rgba(160, 174, 192, 0.25);
+  background: rgba(201, 184, 168, 0.25);
+}
+
+.event-card--workshop .event-card__type::before {
+  content: "🌅 ";
+}
+
+.event-card--meal .event-card__type::before {
+  content: "🐚 ";
+}
+
+.event-card--speaker .event-card__type::before {
+  content: "🦭 ";
+}
+
+.event-card--minievent .event-card__type::before {
+  content: "🌊 ";
+}
+
+.event-card--other .event-card__type::before {
+  content: "🛥️ ";
 }
