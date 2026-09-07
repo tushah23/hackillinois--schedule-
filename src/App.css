@@ -8,11 +8,135 @@ body {
 
 #root {
   min-height: 100vh;
-  background: linear-gradient(180deg, #0a1e3f 0%, #0f3d5c 50%, #1a6b7a 100%);
-  background-attachment: fixed;
+}
+
+/* ---------- Page layout ---------- */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 2; /* sits above the background layer */
   padding: 40px 20px;
   box-sizing: border-box;
 }
+
+/* ---------- Background layer ---------- */
+
+.ocean-background {
+  position: fixed;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  z-index: 0;
+  background: linear-gradient(180deg, #0a1e3f 0%, #0f3d5c 50%, #1a6b7a 100%);
+  overflow: hidden;
+}
+
+/* ---------- Waves ---------- */
+
+.wave-layer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background-repeat: repeat-x;
+  background-size: 1200px 100%;
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+.wave-layer--1 {
+  top: 0%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C300,90 900,10 1200,50 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+  animation: wave-scroll 20s linear infinite;
+}
+
+.wave-layer--2 {
+  top: 28%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C400,20 800,100 1200,60 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
+  animation: wave-scroll 15s linear infinite reverse;
+}
+
+.wave-layer--3 {
+  top: 56%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C300,90 900,10 1200,50 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
+  animation: wave-scroll 12s linear infinite;
+}
+
+.wave-layer--4 {
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C400,20 800,100 1200,60 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.14)'/%3E%3C/svg%3E");
+  animation: wave-scroll 9s linear infinite reverse;
+}
+
+@keyframes wave-scroll {
+  from { background-position-x: 0; }
+  to { background-position-x: 1200px; }
+}
+
+/* ---------- Bubbles ---------- */
+
+.bubbles {
+  position: absolute;
+  inset: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -40px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(1px);
+  animation: bubble-rise linear infinite;
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* Individual bubble variety: size, position, speed, delay */
+.bubble--0  { left: 2%;  width: 8px;  height: 8px;  animation-duration: 11s; animation-delay: 0s; }
+.bubble--1  { left: 8%;  width: 16px; height: 16px; animation-duration: 14s; animation-delay: 2s; }
+.bubble--2  { left: 14%; width: 10px; height: 10px; animation-duration: 9s;  animation-delay: 1s; }
+.bubble--3  { left: 20%; width: 20px; height: 20px; animation-duration: 15s; animation-delay: 4s; }
+.bubble--4  { left: 26%; width: 12px; height: 12px; animation-duration: 12s; animation-delay: 0.5s; }
+.bubble--5  { left: 32%; width: 9px;  height: 9px;  animation-duration: 10s; animation-delay: 3s; }
+.bubble--6  { left: 38%; width: 18px; height: 18px; animation-duration: 16s; animation-delay: 5s; }
+.bubble--7  { left: 44%; width: 11px; height: 11px; animation-duration: 13s; animation-delay: 1.5s; }
+.bubble--8  { left: 50%; width: 14px; height: 14px; animation-duration: 11s; animation-delay: 2.5s; }
+.bubble--9  { left: 56%; width: 8px;  height: 8px;  animation-duration: 17s; animation-delay: 0s; }
+.bubble--10 { left: 62%; width: 17px; height: 17px; animation-duration: 10s; animation-delay: 6s; }
+.bubble--11 { left: 68%; width: 10px; height: 10px; animation-duration: 14s; animation-delay: 4s; }
+.bubble--12 { left: 74%; width: 13px; height: 13px; animation-duration: 12s; animation-delay: 1s; }
+.bubble--13 { left: 80%; width: 19px; height: 19px; animation-duration: 15s; animation-delay: 3.5s; }
+.bubble--14 { left: 86%; width: 9px;  height: 9px;  animation-duration: 9s;  animation-delay: 2s; }
+.bubble--15 { left: 92%; width: 15px; height: 15px; animation-duration: 13s; animation-delay: 5.5s; }
+.bubble--16 { left: 5%;  width: 11px; height: 11px; animation-duration: 18s; animation-delay: 7s; }
+.bubble--17 { left: 95%; width: 12px; height: 12px; animation-duration: 11s; animation-delay: 4.5s; }
+.bubble--18 { left: 45%; width: 7px;  height: 7px;  animation-duration: 10s; animation-delay: 6.5s; }
+.bubble--19 { left: 65%; width: 16px; height: 16px; animation-duration: 14s; animation-delay: 0.8s; }
+.bubble--20 { left: 25%; width: 13px; height: 13px; animation-duration: 12s; animation-delay: 3.2s; }
+.bubble--21 { left: 78%; width: 10px; height: 10px; animation-duration: 16s; animation-delay: 1.2s; }
+.bubble--22 { left: 15%; width: 8px;  height: 8px;  animation-duration: 9s;  animation-delay: 5.8s; }
+.bubble--23 { left: 55%; width: 14px; height: 14px; animation-duration: 13s; animation-delay: 2.8s; }
 
 /* ---------- Event list layout ---------- */
 
@@ -259,4 +383,104 @@ body {
 
 .filter-chip--active {
   opacity: 1;
+}
+
+/* ---------- Fish ---------- */
+
+.critters {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.fish {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.6;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes swim-right-bounded {
+  0%   { transform: translateX(30vw) translateY(0); }
+  50%  { transform: translateX(70vw) translateY(-15px); }
+  100% { transform: translateX(110vw) translateY(0); }
+}
+
+.fish--0 { top: 15%; font-size: 26px; animation: swim-right-bounded 22s infinite; animation-delay: 0s; }
+.fish--1 { top: 30%; font-size: 24px; animation: swim-right-bounded 18s infinite; animation-delay: 5s; }
+.fish--2 { top: 45%; font-size: 22px; animation: swim-right-bounded 26s infinite; animation-delay: 10s; }
+.fish--3 { top: 60%; font-size: 27px; animation: swim-right-bounded 20s infinite; animation-delay: 3s; }
+.fish--4 { top: 72%; font-size: 24px; animation: swim-right-bounded 24s infinite; animation-delay: 8s; }
+.fish--5 { top: 22%; font-size: 20px; animation: swim-right-bounded 28s infinite; animation-delay: 13s; }
+/* ---------- Octopus ---------- */
+
+.octopus {
+  position: absolute;
+  bottom: 6%;
+  right: 8%;
+  font-size: 90px;
+  opacity: 0.5;
+  animation: octopus-wiggle 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes octopus-wiggle {
+  0%, 100% { transform: rotate(-4deg) scaleX(1); }
+  25%      { transform: rotate(3deg) scaleX(1.03); }
+  50%      { transform: rotate(-2deg) scaleX(0.98); }
+  75%      { transform: rotate(4deg) scaleX(1.02); }
+}
+/* ---------- Seaweed ---------- */
+
+.seafloor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+}
+
+.seaweed {
+  position: absolute;
+  bottom: 0;
+  width: 14px;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: linear-gradient(to top, #1f6b4d, #2f9e6f);
+  transform-origin: bottom center;
+  opacity: 0.45;
+  animation: seaweed-sway ease-in-out infinite;
+}
+
+@keyframes seaweed-sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(6deg); }
+}
+
+.seaweed--0 { left: 6%;  height: 90px;  animation-duration: 4s;   animation-delay: 0s; }
+.seaweed--1 { left: 10%; height: 60px;  animation-duration: 3.5s; animation-delay: 0.5s; }
+.seaweed--2 { left: 82%; height: 100px; animation-duration: 4.5s; animation-delay: 1s; }
+.seaweed--3 { left: 88%; height: 70px;  animation-duration: 3.8s; animation-delay: 0.3s; }
+
+/* ---------- Coral ---------- */
+
+.coral {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50% 50% 20% 20% / 60% 60% 20% 20%;
+  opacity: 0.4;
+}
+
+.coral--0 {
+  left: 2%;
+  width: 70px;
+  height: 50px;
+  background: radial-gradient(circle at 30% 30%, #ff9d8a, #b5566f);
+}
+
+.coral--1 {
+  left: 80%;
+  width: 90px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #ffb199, #c9607a);
 }

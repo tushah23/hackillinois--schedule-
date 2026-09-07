@@ -34,7 +34,40 @@ function App() {
   }
 
   return (
-    <div>
+  <div className="page">
+    <div className="ocean-background">
+    <div className="wave-layer wave-layer--1"></div>
+    <div className="wave-layer wave-layer--2"></div>
+    <div className="wave-layer wave-layer--3"></div>
+    <div className="wave-layer wave-layer--4"></div>
+
+  <div className="bubbles">
+    {Array.from({ length: 24 }).map((_, i) => (
+      <span key={i} className={`bubble bubble--${i}`} />
+    ))}
+
+  <div className="critters">
+    <span className="fish fish--0">🐠</span>
+    <span className="fish fish--1">🐟</span>
+    <span className="fish fish--2">🐡</span>
+    <span className="fish fish--3">🐠</span>
+    <span className="fish fish--4">🐟</span>
+    <span className="fish fish--5">🐡</span>
+    <span className="octopus">🐙</span>
+  </div>
+
+<div className="seafloor">
+  <div className="seaweed seaweed--0"></div>
+  <div className="seaweed seaweed--1"></div>
+  <div className="seaweed seaweed--2"></div>
+  <div className="seaweed seaweed--3"></div>
+  <div className="coral coral--0"></div>
+  <div className="coral coral--1"></div>
+  </div>
+</div>
+  </div>
+
+    <div className="content">
       <div className="day-tabs">
         {days.map((day, index) => (
           <button
@@ -68,6 +101,7 @@ function App() {
         ))}
       </div>
     </div>
+  </div>
   );
 }
 
