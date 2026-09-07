@@ -138,3 +138,96 @@ body {
 .event-card--other .event-card__type::before {
   content: "🛥️ ";
 }
+
+.day-tabs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.day-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaf6f8;
+  cursor: pointer;
+  font-family: "Baloo 2", sans-serif;
+}
+
+.day-tab--active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.day-tab__number {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.day-tab__date {
+  font-size: 12px;
+  opacity: 0.75;
+}
+.day-tab::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  width: 30px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+.day-tab {
+  position: relative; /* needed so the highlight can be positioned inside it */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%; /* true circle */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  color: #eaf6f8;
+  cursor: pointer;
+  font-family: "Baloo 2", sans-serif;
+  transition: transform 0.15s ease, background 0.15s ease;
+  overflow: hidden; /* keeps the highlight from spilling outside the circle */
+}
+
+.day-tab:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.day-tab--active {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+
+.day-tab:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.day-tab--active {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
